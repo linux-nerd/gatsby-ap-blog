@@ -1,6 +1,6 @@
 ---
 title: 'S.O.L.I.D: Open/Closed Principle'
-date: 2020-03-25T16:56:16.170Z
+date: 2020-03-25T22:56:16.170Z
 description: >-
   The Open/Closed Principle (OCP) is the SOLID principle which states Software
   entities (classes, modules, functions, etc.) should be open for extension but
