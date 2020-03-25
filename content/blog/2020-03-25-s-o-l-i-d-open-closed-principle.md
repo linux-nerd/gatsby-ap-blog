@@ -1,11 +1,12 @@
 ---
-title: 'S.O.L.I.D: Open/Closed Principle'
+title: "S.O.L.I.D: Open/Closed Principle"
 date: 2020-03-25T22:56:16.170Z
 description: >-
   The Open/Closed Principle (OCP) is the SOLID principle which states Software
   entities (classes, modules, functions, etc.) should be open for extension but
   closed for modification.
 ---
+
 # What is S.O.L.I.D by the way?
 
 [As per Wiki](https://en.wikipedia.org/wiki/SOLID):
@@ -16,13 +17,13 @@ description: >-
 
 **SOLID** stands for -
 
-* [**S** - Single Responsibility Principle](https://dev.to/linuxnerd/s-o-l-i-d-single-responsibility-principle-3m4g/)
-* **O** - Open/Closed Principle
-* **L** - Liskov's Substitution Principle
-* **I** - Implementation Segregation Principle
-* **D** - Dependency Inversion Principle
+- [**S** - Single Responsibility Principle](https://blog.abhishekprakash.com/2020-03-25-s-o-l-i-d-single-responsibility-principle/)
+- **O** - Open/Closed Principle
+- **L** - Liskov's Substitution Principle
+- **I** - Implementation Segregation Principle
+- **D** - Dependency Inversion Principle
 
-In this article, I will be covering **O - Open/Closed Principle**. *Note - The examples will be in Java, but applies to any OOP language.*
+In this article, I will be covering **O - Open/Closed Principle**. _Note - The examples will be in Java, but applies to any OOP language._
 
 # O - Open/Closed Principle (OCP)
 
@@ -95,8 +96,8 @@ public final class InvestmentManager {
 
 This works! But, it violates the OCP since `InvestmentManager` class is
 
-* Closed for extension
-* Open for modification
+- Closed for extension
+- Open for modification
 
 # OCP in action
 
