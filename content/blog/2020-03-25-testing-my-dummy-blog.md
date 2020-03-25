@@ -1,7 +1,10 @@
 ---
-title: Testing my dummy blog
+title: 'S.O.L.I.D: Open/Closed Principle'
 date: 2020-03-25T15:58:43.936Z
-description: WTF
+description: >-
+  The Open/Closed Principle (OCP) is the SOLID principle which states Software
+  entities (classes, modules, functions, etc.) should be open for extension but
+  closed for modification.
 ---
 # What is S.O.L.I.D by the way?
 
@@ -34,7 +37,25 @@ In simple words, we should strive to write code that can be extended without the
 We will first look at an example that breaks the OCP principle.
 
 ```java
+// GeneralInvestment.java
+public class GeneralInvestment {
+  public Double initialAmount;
+  public int year;
+  public Double tax;
 
+  public GeneralInvestment(Double initialAmount, int year, Double tax) {
+    this.initialAmount = initialAmount;
+    this.year = year;
+    this.tax = tax;
+  }
+}
+
+//InvestmentManager.java
+public final class InvestmentManager {
+  public Double calculateReturn(GeneralInvestment investment) {
+    return investment.initialAmount + (investment.year * investment.initialAmount * investment.tax);
+  }
+}
 ```
 
 So, we have a `GeneralInvestment` class and an `InvestmentManager` class. The sole purpose of `InvestmentManager` is to calculate return of type `GeneralInvestment`.
@@ -42,13 +63,34 @@ So, we have a `GeneralInvestment` class and an `InvestmentManager` class. The so
 Going further we have a feature request to calculate return on `AdvancedInvestment`. Let's add some code to accomplish that.
 
 ```java
+//AdvancedInvestment.java
+public class AdvancedInvestment extends GeneralInvestment {
+  public Double incremental;
+  public int period;
 
+  public AdvancedInvestment(Double initialAmount, int year, Double tax, Double incremental, int period) {
+    super(initialAmount, year, tax);
+    this.incremental = incremental;
+    this.period = period;
+  }
+}
 ```
 
 Now, we have `AdvancedInvestment` in place. Let's update our `InvestmentManager` class to handle new case.
 
 ```java
-
+public final class InvestmentManager {
+  public Double calculatereturn(GeneralInvestment investment) {
+    if (investment instanceof AdvancedInvestment) {
+      AdvancedInvestment advancedInvestment = (AdvancedInvestment) investment;
+      return advancedInvestment.initialAmount
+          + (advancedInvestment.year * advancedInvestment.initialAmount * advancedInvestment.tax)
+          + (advancedInvestment.period * advancedInvestment.incremental * advancedInvestment.tax);
+    } else {
+      return investment.initialAmount + (investment.year * investment.initialAmount * investment.tax);
+    }
+  }
+}
 ```
 
 This works! But, it violates the OCP since `InvestmentManager` class is
@@ -63,19 +105,60 @@ Let's try and implement the above-mentioned scenario without breaking OCP.
 **Step 1:** Create an interface
 
 ```java
-
+// Investment.java
+interface Investment {
+  public Double calculateReturn();
+}
 ```
 
 **Step 2:** Update `GeneralInvestment` and `AdvancedInvestment` classes by implementing `Investment` interface
 
 ```java
+//GeneralInvestment.java
+public class GeneralInvestment implements Investment {
+  public Double initialAmount;
+  public int year;
+  public Double tax;
 
+  public GeneralInvestment(Double initialAmount, int year, Double tax) {
+    this.initialAmount = initialAmount;
+    this.year = year;
+    this.tax = tax;
+  }
+
+  public Double calculateReturn() {
+    return initialAmount + (year * initialAmount * tax);
+  }
+}
+
+//AdvancedInvestment.java
+public class AdvancedInvestment implements Investment {
+  public Double incremental;
+  public int period;
+  public GeneralInvestment investment;
+
+  public AdvancedInvestment(Double initialAmount, int year, Double tax, Double incremental, int period) {
+    this.incremental = incremental;
+    this.period = period;
+    this.investment = new GeneralInvestment(initialAmount, year, tax);
+  }
+
+  public Double calculateReturn() {
+    return investment.initialAmount + (investment.year * investment.initialAmount * investment.tax)
+        + (period * incremental * investment.tax);
+  }
+}
 ```
 
 **Step 3:** FInally update the `InvestmentManager` class
 
 ```java
-
+//InvestmentManager.java
+public final class InvestmentManager {
+  public Double calculateReturn(Investment investment) {
+    return investment.calculateReturn();
+  }
+}
 ```
 
 Here is the UML diagram to reduce verbosity: ![UML diagram for ocp principle](https://dev-to-uploads.s3.amazonaws.com/i/mzo65d3j9d3u0bj1iyvc.png)
@@ -87,5 +170,3 @@ Here we go! Going further if we have a new requirement to add different types of
 Always keep in mind to make your code open for extension and closed for modification. This will make the maintenance of code so easy.
 
 The example in this post has used a compositional design pattern (Strategy Pattern) to achieve OCP, but it can also be achieved through the use of inheritance.
-
-**Peace! If you have any questions or feedback, please feel free to comment below.**
