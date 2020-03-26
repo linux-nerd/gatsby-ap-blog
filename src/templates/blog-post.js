@@ -80,7 +80,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           options={{
             clientID: "0303f48d682b418752b6",
             clientSecret: "e877555dcce1c8eac96cdc50a85b0825cbf32c1e",
-            repo: "http://blog.abhishekprakash.com/",
+            repo: "https://github.com/linux-nerd/gatsby-ap-blog",
             owner: "linux-nerd",
             admin: ["linux-nerd"],
             id: location.pathname,
