@@ -5,6 +5,7 @@ import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { rhythm, scale } from "../utils/typography"
+import GitalkComponent from "gitalk/dist/gitalk-component"
 
 const BlogPostTemplate = ({ data, pageContext, location }) => {
   const post = data.markdownRemark
@@ -74,6 +75,17 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           </li>
         </ul>
       </nav>
+      <GitalkComponent
+        options={{
+          clientID: "0303f48d682b418752b6",
+          clientSecret: "e877555dcce1c8eac96cdc50a85b0825cbf32c1e",
+          repo: "GitHub repo",
+          owner: "linuc-nerd",
+          admin: ["linux-nerd"],
+          id: location.pathname,
+          distractionFreeMode: false,
+        }}
+      />
     </Layout>
   )
 }
