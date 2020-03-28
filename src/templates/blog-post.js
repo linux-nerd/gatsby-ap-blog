@@ -16,10 +16,12 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
     const gitalk = new Gitalk({
       clientID: "0303f48d682b418752b6",
       clientSecret: "e877555dcce1c8eac96cdc50a85b0825cbf32c1e",
-      repo: "https://github.com/linux-nerd/gatsby-ap-blog",
+      repo: "ap-blog-comments",
       owner: "linux-nerd",
       admin: ["linux-nerd"],
       id: location.pathname, // Ensure uniqueness and length less than 50
+      title: `Comments on '${title}'`,
+      body: `This issue exists to host comments for ${url}${path}`,
       distractionFreeMode: false, // Facebook-like distraction free mode
     })
 
