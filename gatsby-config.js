@@ -1,11 +1,11 @@
 module.exports = {
   siteMetadata: {
-    title: `My Thoughts`,
+    title: `2Cents`,
     author: {
       name: `Abhishek Prakash`,
-      summary: `who lives and works in Stockholm building useful things.`,
+      summary: `Personal thought by`,
     },
-    description: `A small platform to share my thoughts`,
+    description: `A platform to share my thoughts`,
     siteUrl: `https://blog.abhishekprakash.com`,
     social: {
       twitter: `linux_nerd`,
