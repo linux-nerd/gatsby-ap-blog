@@ -1,16 +1,30 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { Link, graphql } from "gatsby"
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { rhythm, scale } from "../utils/typography"
-import GitalkComponent from "gitalk/dist/gitalk-component"
+import Gitalk from "gitalk"
 
 const BlogPostTemplate = ({ data, pageContext, location }) => {
   const post = data.markdownRemark
   const siteTitle = data.site.siteMetadata.title
   const { previous, next } = pageContext
+
+  useEffect(() => {
+    const gitalk = new Gitalk({
+      clientID: "0303f48d682b418752b6",
+      clientSecret: "e877555dcce1c8eac96cdc50a85b0825cbf32c1e",
+      repo: "https://github.com/linux-nerd/gatsby-ap-blog",
+      owner: "linux-nerd",
+      admin: ["linux-nerd"],
+      id: location.pathname, // Ensure uniqueness and length less than 50
+      distractionFreeMode: false, // Facebook-like distraction free mode
+    })
+
+    gitalk.render("gitalk-container")
+  }, [])
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -75,19 +89,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           </li>
         </ul>
       </nav>
-      {typeof window !== "undefined" && (
-        <GitalkComponent
-          options={{
-            clientID: "0303f48d682b418752b6",
-            clientSecret: "e877555dcce1c8eac96cdc50a85b0825cbf32c1e",
-            repo: "https://github.com/linux-nerd/gatsby-ap-blog",
-            owner: "linux-nerd",
-            admin: ["linux-nerd"],
-            id: location.pathname,
-            distractionFreeMode: true,
-          }}
-        />
-      )}
+      <div id="gitalk-container" />
     </Layout>
   )
 }
