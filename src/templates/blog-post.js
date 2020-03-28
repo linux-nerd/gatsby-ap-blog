@@ -20,8 +20,8 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
       owner: "linux-nerd",
       admin: ["linux-nerd"],
       id: location.pathname, // Ensure uniqueness and length less than 50
-      title: `Comments on '${title}'`,
-      body: `This issue exists to host comments for ${url}${path}`,
+      title: `Comments on '${location.pathname}'`,
+      body: `This issue exists to host comments for location.pathname`,
       distractionFreeMode: false, // Facebook-like distraction free mode
     })
 
@@ -103,6 +103,8 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        siteUrl
+        author
       }
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {
