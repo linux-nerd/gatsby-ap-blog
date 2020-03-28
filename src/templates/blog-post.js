@@ -20,7 +20,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
       owner: "linux-nerd",
       admin: ["linux-nerd"],
       id: location.pathname, // Ensure uniqueness and length less than 50
-      title: `Comments on '${siteTitle}'`,
+      title: `Comments on '${post.frontmatter.title}'`,
       body: `This issue exists to host comments for ${location.href}`,
       distractionFreeMode: false, // Facebook-like distraction free mode
     })
