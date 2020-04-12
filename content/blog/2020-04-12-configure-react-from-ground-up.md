@@ -11,10 +11,15 @@ The easiest and the most effective way to write react code is to spin up a dev e
 
 # What do we need for basic setup? (｀_´)ゞ
 
-For a basic setup we need - 
+Our aim is to have a basic setup which -
 
-* It to understand `jsx` and new javascript syntax (ESNext)
-* It should load css and images via `import`
-* It should be able to spin up a dev server and support hot reloading
+* understand `jsx` and new javascript syntax (ESNext)
+* load css and images via `import`
+* is able to spin up a dev server and support hot reloading
 
 In the rest of the post we will try to achieve the above mentioned points.
+
+# Let's begin ＼(●o○;)ノ
+
+
+# Conclusion
