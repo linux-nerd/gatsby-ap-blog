@@ -5,29 +5,29 @@ description: Configure React from ground up using Webpack and Babel
 ---
 # Introduction ꒰⑅•ᴗ•⑅꒱
 
-The easiest and the most effective way to write react code is to spin up a dev environment via [create react app](https://github.com/facebook/create-react-app). I bet everyone who is into React development has used `create react app`. The best and the worst thing about **CRA** is `abstraction`. It abstracts away the details which is required for the setup. For some one new to react, its heaven as that person can solely focus on learning react. For a seasoned/senior developer, it makes more sense to know how the setup works. In this post, I will setup the dev environment for react from ground up using [Webpack](https://webpack.js.org/) and [Babel](https://babeljs.io/).
+The easiest and the most effective way to write react code is to spin up a dev environment via [create react app](https://github.com/facebook/create-react-app). I bet everyone who is into React development has used `create react app`. The best and the worst thing about **CRA** is `abstraction`. It abstracts away the details which are required for the setup. For someone new to react, its heaven as that person can solely focus on learning react. For a seasoned/senior developer, it makes more sense to know how the setup works. In this post, I will setup the dev environment to react from the ground up using [Webpack](https://webpack.js.org/) and [Babel](https://babeljs.io/).
 
 # Why do we need Webpack and Babel? (◞‸ლ)
 
 ## Webpack
 >At its core, webpack is a static module bundler for modern JavaScript applications.
 
-We can structure our application into multiple files and and in the end webpack bundles out app into a bundle, ready to be served.
+We can structure our application into multiple files and in the end webpack bundles out app into a bundle, ready to be served.
 
 ## Babel
->Babel is a toolchain that is mainly used to convert ECMAScript 2015+ code into a backwards compatible version of JavaScript in current and older browsers or environments.
+>Babel is a toolchain that is mainly used to convert ECMAScript 2015+ code into a backward-compatible version of JavaScript in current and older browsers or environments.
 
-We can write ESNext code and JSX in our application and the transpiling will be taken care by `babel`.
+We can write ESNext code and JSX in our application and the transpiling will be taken care of by `babel`.
 
 # What do we need for basic setup? (｀_´)ゞ
 
 Our aim is to have a basic setup which -
 
 * understand `jsx` and new javascript syntax (ESNext)
-* load css and images via `import`
+* load `CSS` and images via `import`
 * is able to spin up a dev server and support hot reloading
 
-In the rest of the post we will try to achieve the above mentioned points.
+In the rest of the post, we will try to achieve the above-mentioned points.
 
 # Warmup ＼(●o○;)ノ
 
@@ -62,14 +62,14 @@ Now, it's time to install `babel` and it's plugins/presets.
 ```shell
 yarn add -D @babel/core babel-loader @babel/preset-env @babel/preset-react html-webpack-plugin
 ```
-We also needs babel loaders for files, css and styles.
+We also need babel loaders for files, css, and styles.
 
 ```shell
 yarn add -D css-loader file-loader style-loader
 ```
 Phew, too many dependencies! (◣_◢)
 
-Let's see what all does - 
+Let's see what all do - 
 * **@babel/core** - The core babel library
 * **@babel/preset-env** - It is a smart preset that allows you to use the latest JavaScript without needing to micromanage which syntax transforms (and optionally, browser polyfills) are needed by your target environment(s). This both makes your life easier and JavaScript bundles smaller!
 * **@babel/preset-react** - Transform React JSX into regular JavaScript code
@@ -79,16 +79,16 @@ Let's see what all does -
 * **style-loader** - The style-loader takes CSS and actually inserts it into the page so that the styles are active on the page.
 * **html-webpack-plugin** - The HtmlWebpackPlugin simplifies the creation of HTML files to serve your webpack bundles. This is especially useful for webpack bundles that include a hash in the filename which changes every compilation.
 
-Finally add `react` and `react-dom`
+Finally, add `react` and `react-dom`
 
 ```shell
 yarn add react react-dom
 ```
 
 # Code Walk ᕕ( ᐛ )ᕗ
-In previous section we have added required dependencies. In this section we will walk together writing some code. (^∇^)
+In the previous section, we have added the required dependencies. In this section, we will walk together writing some code. (^∇^)
 
-## Add source code related to application
+## Add source code related to the application
 Let's create a `src` directory under the root and add `index.js`, `index.html`, `App.js` and `App.css`
 
 ```shell
@@ -165,7 +165,7 @@ ReactDOM.render(<App />, document.querySelector("#root"));
 ```
 
 ## Configure babel
-Above code in present state means nothing to the browser. We have to make it browser friendly and for that we need to configure our babel. Lets create `.babelrc` file in the root and add below line to it.
+The above code in the present state means nothing to the browser. We have to make it browser friendly and for that, we need to configure our babel. Let's create `.babelrc` file in the root and add below line to it.
 
 ```json
 { "presets": ["@babel/preset-env", "@babel/preset-react"] }
@@ -231,8 +231,8 @@ module.exports = {
 
 ```
 Well, a lot is going on. Let's break and see what's happening.
-* **entry** - Represents the entry point of the application. In our case it's `src/index.js`
-* **output** - Represents the outcome. In our case the application is bundled in `bundle.js` and is stored in `dist` directory.
+* **entry** - Represents the entry point of the application. In our case, it's `src/index.js`
+* **output** - Represents the outcome. In our case, the application is bundled in `bundle.js` and is stored in the `dist` directory.
 * **resolve** - It resolves the list of extensions
 * **module** - We will add all the loaders in the module
     * **babel-loader** - Used to load `JavaScript` flies
@@ -242,7 +242,7 @@ Well, a lot is going on. Let's break and see what's happening.
 
 
 ## Run the app in dev mode
-Almost there! Finally add the below script to `script` section of `package.json`
+Almost there! Finally, add the below script to `script` section of `package.json`
 
 ```shell
 script: {
@@ -257,7 +257,7 @@ yarn start
 
 
 # Conclusion ᕦ༼ ͡° ͜ ͝° ༽ᕤ
-In this post we have successfully created our react workspace using webpack and babel. It can easily be extended as per the use case, like adding strict typings support ([Flow](https://flow.org/) or [TypeScript](https://www.typescriptlang.org/)), etc.
+In this post, we have successfully created our react workspace using webpack and babel. It can easily be extended as per the use case, like adding strict typings support ([Flow](https://flow.org/) or [TypeScript](https://www.typescriptlang.org/)), etc.
 
 **Peace!**
 **If you have any questions or feedback, please feel free to comment below.**
