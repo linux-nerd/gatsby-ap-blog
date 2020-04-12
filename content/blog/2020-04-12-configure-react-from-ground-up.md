@@ -19,7 +19,7 @@ Our aim is to have a basic setup which -
 
 In the rest of the post we will try to achieve the above mentioned points.
 
-# Let's begin ＼(●o○;)ノ
+# Let's begin the warmup ＼(●o○;)ノ
 
 We will start with creating a directory `react-webpack`
 
@@ -38,5 +38,42 @@ yarn init -y
 
 *Note: I am using yarn as a package manager but you can use npm as well*
 
+Once we have our `package.json` ready, we need to install `webpack-cli` and `webpack-dev-server`.
+
+**Webpack CLI** provides a flexible set of commands for developers to increase speed when setting up a custom webpack project.
+
+**Webpack Dev Server** serves a webpack app and updates the browser on changes.
+
+```shell
+yarn add -D webpack-cli webpack-dev-server
+```
+Now, it's time to install `babel` and it's plugins/presets.
+
+```shell
+yarn add -D @babel/core babel-loader @babel/preset-env @babel/preset-react
+```
+We also needs babel loaders for files, css and styles.
+
+```shell
+yarn add -D css-loader file-loader style-loader
+```
+Phew, too many dependencies! (◣_◢)
+
+Let's see what all does - 
+* **@babel/core**
+* **@babel/preset-env**
+* **@babel/preset-react**
+* **babel-loader**
+* **css-loader**
+* **file-loader**
+* **style-loader**
+
+Finally add `react` and `react-dom`
+
+```shell
+yarn add react react-dom
+```
+
+# Code Walk ᕕ( ᐛ )ᕗ
 
 # Conclusion ᕦ༼ ͡° ͜ ͝° ༽ᕤ
