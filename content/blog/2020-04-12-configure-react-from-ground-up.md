@@ -1,5 +1,5 @@
 ---
-title: Configure React from ground up
+title: Configure React from Ground Up
 date: 2020-04-12T11:27:43.817Z
 description: Configure React from ground up using Webpack and Babel
 ---
