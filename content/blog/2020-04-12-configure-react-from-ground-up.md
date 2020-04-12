@@ -19,7 +19,7 @@ Our aim is to have a basic setup which -
 
 In the rest of the post we will try to achieve the above mentioned points.
 
-# Let's begin the warmup ＼(●o○;)ノ
+# Warmup ＼(●o○;)ノ
 
 We will start with creating a directory `react-webpack`
 
@@ -50,7 +50,7 @@ yarn add -D webpack-cli webpack-dev-server
 Now, it's time to install `babel` and it's plugins/presets.
 
 ```shell
-yarn add -D @babel/core babel-loader @babel/preset-env @babel/preset-react
+yarn add -D @babel/core babel-loader @babel/preset-env @babel/preset-react html-webpack-plugin
 ```
 We also needs babel loaders for files, css and styles.
 
@@ -60,13 +60,14 @@ yarn add -D css-loader file-loader style-loader
 Phew, too many dependencies! (◣_◢)
 
 Let's see what all does - 
-* **@babel/core**
-* **@babel/preset-env**
-* **@babel/preset-react**
-* **babel-loader**
-* **css-loader**
-* **file-loader**
-* **style-loader**
+* **@babel/core** - The core babel library
+* **@babel/preset-env** - It is a smart preset that allows you to use the latest JavaScript without needing to micromanage which syntax transforms (and optionally, browser polyfills) are needed by your target environment(s). This both makes your life easier and JavaScript bundles smaller!
+* **@babel/preset-react** - Transform React JSX into regular JavaScript code
+* **babel-loader** - Webpack loader helper
+* **css-loader** - Handle CSS files
+* **file-loader** - Handle files
+* **style-loader** - The style-loader takes CSS and actually inserts it into the page so that the styles are active on the page.
+* **html-webpack-plugin** - The HtmlWebpackPlugin simplifies the creation of HTML files to serve your webpack bundles. This is especially useful for webpack bundles that include a hash in the filename which changes every compilation.
 
 Finally add `react` and `react-dom`
 
@@ -75,5 +76,178 @@ yarn add react react-dom
 ```
 
 # Code Walk ᕕ( ᐛ )ᕗ
+In previous section we have added required dependencies. In this section we will walk together writing some code. (^∇^)
+
+## Add source code related to application
+Let's create a `src` directory under the root and add `index.js`, `index.html`, `App.js` and `App.css`
+
+```shell
+mkdir src
+touch src/index.js src/index.html src/App.js src/App.css
+```
+Now, it's time to update the files. You can use the editor of your choice. I will first add some basic html to `index.html`
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>My React App</title>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+</html>
+
+<!-- src/index.html -->
+```
+
+Time for our first component
+```javascript
+// src/App.js
+
+import React from "react";
+import "./App.css";
+import reactImg from "./assets/react.svg";
+
+const App = () => {
+  return (
+    <>
+      <div>Welcome to React Webpack</div>
+      <img src={reactImg} />
+    </>
+  )
+};
+
+export default App;
+
+```
+Throw in some minor styles
+```css
+/* src/App.css */
+
+div {
+  background-color: teal;
+}
+
+img {
+  display: flex;
+  height: 50px;
+  width: 50px;
+}
+
+```
+
+Finally wire them together in `index.js`, the entry point of this application
+
+```javascript
+// src/index.js
+
+import React from "react";
+import ReactDOM from "react-dom";
+
+import App from "./App";
+
+ReactDOM.render(<App />, document.querySelector("#root"));
+
+```
+
+## Configure babel
+Above code in present state means nothing to the browser. We have to make it browser friendly and for that we need to configure our babel. Lets create `.babelrc` file in the root and add below line to it.
+
+```json
+{ "presets": ["@babel/preset-env", "@babel/preset-react"] }
+```
+## Configure webpack
+First create `webpack.config.js` in the root and add below code to it.
+
+```javascript
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+module.exports = {
+  entry: './src/index.js',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js',
+    chunkFilename: '[id].js',
+    publicPath: ''
+  },
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/
+      },
+      {
+        test: /\.css$/,
+        use: [
+          { loader: 'style-loader' },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                localIdentName: "[name]__[local]___[hash:base64:5]"
+              },
+              sourceMap: true
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ]
+      }
+    ]
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: __dirname + '/src/index.html',
+      filename: 'index.html',
+      inject: 'body'
+    })
+  ]
+}
+
+```
+Well, a lot is going on. Let's break and see what's happening.
+* **entry** - Represents the entry point of the application. In our case it's `src/index.js`
+* **output** - Represents the outcome. In our case the application is bundled in `bundle.js` and is stored in `dist` directory.
+* **resolve** - It resolves the list of extensions
+* **module** - We will add all the loaders in the module
+    * **babel-loader** - Used to load `JavaScript` flies
+    * **style-loader** and **css-loader** - Used to load `css` files
+    * **file-loader** - Used to load images and files
+* **plugins** - All the plugins will be added here
+
+
+## Run the app in dev mode
+Almost there! Finally add the below script to `script` section of `package.json`
+
+```shell
+script: {
+  "start": "webpack-dev-server --open --hot --mode development"
+}
+```
+
+And to run the application, open a terminal and hit 
+```shell
+yarn start
+```
+
 
 # Conclusion ᕦ༼ ͡° ͜ ͝° ༽ᕤ
+In this post we have successfully created our react workspace using webpack and babel. It can easily be extended as per the use case, like adding strict typings support ([Flow](https://flow.org/) or [TypeScript](https://www.typescriptlang.org/)), etc.
+
+**Peace!**
+**If you have any questions or feedback, please feel free to comment below.**
