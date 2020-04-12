@@ -9,6 +9,16 @@ The easiest and the most effective way to write react code is to spin up a dev e
 
 # Why do we need Webpack and Babel? (◞‸ლ)
 
+## Webpack
+>At its core, webpack is a static module bundler for modern JavaScript applications.
+
+We can structure our application into multiple files and and in the end webpack bundles out app into a bundle, ready to be served.
+
+## Babel
+>Babel is a toolchain that is mainly used to convert ECMAScript 2015+ code into a backwards compatible version of JavaScript in current and older browsers or environments.
+
+We can write ESNext code and JSX in our application and the transpiling will be taken care by `babel`.
+
 # What do we need for basic setup? (｀_´)ゞ
 
 Our aim is to have a basic setup which -
