@@ -21,5 +21,22 @@ In the rest of the post we will try to achieve the above mentioned points.
 
 # Let's begin ＼(●o○;)ノ
 
+We will start with creating a directory `react-webpack`
 
-# Conclusion
+```shell
+mkdir react-webpack
+cd react-webpack
+```
+
+Next, we will create `package.json`
+
+```shell
+yarn init -y
+```
+
+`-y` flag above skips the interactive session of [yarn](https://classic.yarnpkg.com/en/docs/cli/init/). Feel free to omit the `--yes` flag if you want more control over your creation of `package.json`.
+
+*Note: I am using yarn as a package manager but you can use npm as well*
+
+
+# Conclusion ᕦ༼ ͡° ͜ ͝° ༽ᕤ
