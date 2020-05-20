@@ -4,6 +4,7 @@ module.exports = {
     author: {
       name: `Abhishek Prakash`,
       summary: `Personal thought by`,
+      homePage: `https://abhishekprakash.com`,
     },
     description: `A platform to share my thoughts`,
     siteUrl: `https://blog.abhishekprakash.com`,
@@ -80,5 +81,6 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
     `gatsby-plugin-netlify-cms`,
+    `gatsby-plugin-styled-components`,
   ],
 }

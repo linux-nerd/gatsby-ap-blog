@@ -1,71 +1,64 @@
 import React from "react"
 import { Link } from "gatsby"
+import styled, { css } from "styled-components"
 
 import { rhythm, scale } from "../utils/typography"
 
-const Layout = ({ location, title, children }) => {
+const AllBlogsHeader = styled.h1`
+  ${props => {
+    const { fontSize, lineHeight } = scale(1.5)
+    return css`
+      font-size: ${fontSize};
+      line-height: ${lineHeight};
+    `
+  }};
+  margin-bottom: ${rhythm(1.5)};
+  margin-top: 0;
+`
+const BlogPostHeader = styled.h3`
+  font-family: Montserrat, sans-serif;
+  margin-top: 0;
+  color: #007acc;
+`
+
+const StyledLink = styled(Link)`
+  box-shadow: none;
+  text-decoration: none;
+  color: inherit;
+`
+
+const Container = styled.div`
+  margin-left: auto;
+  margin-right: auto;
+  max-width: ${rhythm(24)};
+  padding: ${rhythm(1.5)} ${rhythm(3 / 4)};
+`
+
+const Layout = ({ location, title, author, children }) => {
   const rootPath = `${__PATH_PREFIX__}/`
   let header
 
   if (location.pathname === rootPath) {
     header = (
-      <h1
-        style={{
-          ...scale(1.5),
-          marginBottom: rhythm(1.5),
-          marginTop: 0,
-        }}
-      >
-        <Link
-          style={{
-            boxShadow: `none`,
-            textDecoration: `none`,
-            color: `inherit`,
-          }}
-          to={`/`}
-        >
-          {title}
-        </Link>
-      </h1>
+      <AllBlogsHeader>
+        <StyledLink to={`/`}>{title}</StyledLink>
+      </AllBlogsHeader>
     )
   } else {
     header = (
-      <h3
-        style={{
-          fontFamily: `Montserrat, sans-serif`,
-          marginTop: 0,
-          color: "#007acc",
-        }}
-      >
-        <Link
-          style={{
-            boxShadow: `none`,
-            textDecoration: `none`,
-            color: `inherit`,
-          }}
-          to={`/`}
-        >
-          {title}
-        </Link>
-      </h3>
+      <BlogPostHeader>
+        <StyledLink to={`/`}>{title}</StyledLink>
+      </BlogPostHeader>
     )
   }
   return (
-    <div
-      style={{
-        marginLeft: `auto`,
-        marginRight: `auto`,
-        maxWidth: rhythm(24),
-        padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
-      }}
-    >
+    <Container>
       <header>{header}</header>
       <main>{children}</main>
       <footer>
-        © {new Date().getFullYear()}{" "}
-        <a href="https://www.abhishekprakash.com">Abhishek Prakash</a>
+        © {new Date().getFullYear()} <a href={author.homePage}>{author.name}</a>
       </footer>
-    </div>
+    </Container>
   )
 }
 

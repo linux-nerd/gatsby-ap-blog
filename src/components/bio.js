@@ -8,51 +8,55 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import Image from "gatsby-image"
-
+import styled from "styled-components"
 import { rhythm } from "../utils/typography"
 
-const Bio = () => {
-  const data = useStaticQuery(graphql`
-    query BioQuery {
-      avatar: file(absolutePath: { regex: "/profile-pic.jpg/" }) {
-        childImageSharp {
-          fixed(width: 50, height: 50) {
-            ...GatsbyImageSharpFixed
-          }
-        }
-      }
-      site {
-        siteMetadata {
-          author {
-            name
-            summary
-          }
-          description
-          social {
-            twitter
-          }
+const Container = styled.div`
+  display: flex;
+  margin-bottom: ${rhythm(2.5)};
+`
+
+const StyledImage = styled(Image)`
+  margin-right: ${rhythm(1 / 2)};
+  margin-bottom: 0;
+  min-width: 50;
+  border-radius: 100%;
+`
+
+const gq = graphql`
+  query BioQuery {
+    avatar: file(absolutePath: { regex: "/profile-pic.jpg/" }) {
+      childImageSharp {
+        fixed(width: 50, height: 50) {
+          ...GatsbyImageSharpFixed
         }
       }
     }
-  `)
+    site {
+      siteMetadata {
+        author {
+          name
+          summary
+          homePage
+        }
+        description
+        social {
+          twitter
+        }
+      }
+    }
+  }
+`
+
+const Bio = () => {
+  const data = useStaticQuery(gq)
 
   const { author, description } = data.site.siteMetadata
   return (
-    <div
-      style={{
-        display: `flex`,
-        marginBottom: rhythm(2.5),
-      }}
-    >
-      <Image
+    <Container>
+      <StyledImage
         fixed={data.avatar.childImageSharp.fixed}
         alt={author.name}
-        style={{
-          marginRight: rhythm(1 / 2),
-          marginBottom: 0,
-          minWidth: 50,
-          borderRadius: `100%`,
-        }}
         imgStyle={{
           borderRadius: `50%`,
         }}
@@ -61,12 +65,12 @@ const Bio = () => {
         {author.summary}
         &nbsp;
         <strong>
-          <a href="https://abhishekprakash.com">{author.name}</a>
+          <a href={author.homePage}>{author.name}</a>
         </strong>
         <br />
         {description}
       </p>
-    </div>
+    </Container>
   )
 }
 
