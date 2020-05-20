@@ -14,7 +14,7 @@ const Title = styled.h1`
 `
 const SubTitle = styled.p`
   ${props => {
-    const { fontSize, lineHeight } = scale(1.5)
+    const { fontSize, lineHeight } = scale(-1 / 5)
     return css`
       font-size: ${fontSize};
       line-height: ${lineHeight};
