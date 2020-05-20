@@ -1,17 +1,27 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
+import styled from "styled-components"
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { rhythm } from "../utils/typography"
 
+const Title = styled.h3`
+  margin-bottom: ${rhythm(1 / 4)};
+`
+
+const LinkToBlog = styled(Link)`
+  box-shadow: none;
+`
+
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title
   const posts = data.allMarkdownRemark.edges
+  const author = data.site.siteMetadata.author
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout location={location} title={siteTitle} author={author}>
       <SEO title="All posts" />
       <Bio />
       {posts.map(({ node }) => {
@@ -19,15 +29,9 @@ const BlogIndex = ({ data, location }) => {
         return (
           <article key={node.fields.slug}>
             <header>
-              <h3
-                style={{
-                  marginBottom: rhythm(1 / 4),
-                }}
-              >
-                <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
-                  {title}
-                </Link>
-              </h3>
+              <Title>
+                <LinkToBlog to={node.fields.slug}>{title}</LinkToBlog>
+              </Title>
               <small>{node.frontmatter.date}</small>
             </header>
             <section>
@@ -51,6 +55,10 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        author {
+          name
+          homePage
+        }
       }
     }
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
