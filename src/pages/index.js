@@ -15,6 +15,14 @@ const LinkToBlog = styled(Link)`
   box-shadow: none;
 `
 
+const Article = styled.article`
+  border: 1px solid gray;
+  margin-bottom: 10px;
+  padding: 0 20px;
+  border-radius: 10px;
+  box-shadow: 2px 1px 1px grey;
+`
+
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title
   const posts = data.allMarkdownRemark.edges
@@ -27,7 +35,7 @@ const BlogIndex = ({ data, location }) => {
       {posts.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug
         return (
-          <article key={node.fields.slug}>
+          <Article key={node.fields.slug}>
             <header>
               <Title>
                 <LinkToBlog to={node.fields.slug}>{title}</LinkToBlog>
@@ -41,7 +49,7 @@ const BlogIndex = ({ data, location }) => {
                 }}
               />
             </section>
-          </article>
+          </Article>
         )
       })}
     </Layout>
