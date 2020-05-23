@@ -64,8 +64,6 @@ module.exports = {
         name: `Abhishek's Blog`,
         short_name: `Blog`,
         start_url: `/`,
-        background_color: `#ffffff`,
-        theme_color: `#663399`,
         display: `minimal-ui`,
         icon: `content/assets/ap-icon.png`,
       },

@@ -9,6 +9,10 @@ import { rhythm } from "../utils/typography"
 
 const Title = styled.h3`
   margin-bottom: ${rhythm(1 / 4)};
+  color: ${props => props.theme.color.primary}!important;
+  font-family: ${props => props.theme.font.family};
+  font-size: 1.75rem;
+  margin-bottom: 0.4375rem;
 `
 
 const LinkToBlog = styled(Link)`
@@ -16,11 +20,11 @@ const LinkToBlog = styled(Link)`
 `
 
 const Article = styled.article`
-  border: 1px solid gray;
+  border: 1px solid ${props => props.theme.color.primary};
   margin-bottom: 10px;
   padding: 0 20px;
   border-radius: 10px;
-  box-shadow: 2px 1px 1px grey;
+  box-shadow: 2px 1px 5px ${props => props.theme.color.primary};
 `
 
 const BlogIndex = ({ data, location }) => {

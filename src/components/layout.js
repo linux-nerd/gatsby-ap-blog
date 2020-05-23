@@ -1,8 +1,10 @@
-import React from "react"
+import React, { useState } from "react"
 import { Link } from "gatsby"
-import styled, { css } from "styled-components"
+import styled, { css, ThemeProvider } from "styled-components"
 
 import { rhythm, scale } from "../utils/typography"
+import { darkTheme, lightTheme } from "../utils/theme"
+import { GlobalStyle } from "./global-style"
 
 const AllBlogsHeader = styled.h1`
   ${props => {
@@ -16,9 +18,9 @@ const AllBlogsHeader = styled.h1`
   margin-top: 0;
 `
 const BlogPostHeader = styled.h3`
-  font-family: Montserrat, sans-serif;
+  font-family: ${props => props.theme.font.family};
   margin-top: 0;
-  color: #007acc;
+  color: ${props => props.theme.color.primary};
 `
 
 const StyledLink = styled(Link)`
@@ -35,6 +37,7 @@ const Container = styled.div`
 `
 
 const Layout = ({ location, title, author, children }) => {
+  const [isLightTheme, setIsLightTheme] = useState(true)
   const rootPath = `${__PATH_PREFIX__}/`
   let header
 
@@ -51,14 +54,27 @@ const Layout = ({ location, title, author, children }) => {
       </BlogPostHeader>
     )
   }
+
+  const toggleTheme = () => setIsLightTheme(prevState => !prevState)
   return (
-    <Container>
-      <header>{header}</header>
-      <main>{children}</main>
-      <footer>
-        © {new Date().getFullYear()} <a href={author.homePage}>{author.name}</a>
-      </footer>
-    </Container>
+    <ThemeProvider theme={isLightTheme ? lightTheme : darkTheme}>
+      <GlobalStyle />
+      <Container>
+        <header>
+          {header}
+          <input
+            type="checkbox"
+            checked={isLightTheme}
+            onChange={toggleTheme}
+          />
+        </header>
+        <main>{children}</main>
+        <footer>
+          © {new Date().getFullYear()}{" "}
+          <a href={author.homePage}>{author.name}</a>
+        </footer>
+      </Container>
+    </ThemeProvider>
   )
 }
 
