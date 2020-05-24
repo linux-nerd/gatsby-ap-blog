@@ -1,10 +1,12 @@
-import React, { useState } from "react"
+import React from "react"
 import { Link } from "gatsby"
 import styled, { css, ThemeProvider } from "styled-components"
 
 import { rhythm, scale } from "../utils/typography"
 import { darkTheme, lightTheme } from "../utils/theme"
 import { GlobalStyle } from "./global-style"
+import { ThemeToggle } from "./theme-toggle"
+import { useTheme } from "../hooks/use-theme"
 
 const AllBlogsHeader = styled.h1`
   ${props => {
@@ -36,8 +38,16 @@ const Container = styled.div`
   padding: ${rhythm(1.5)} ${rhythm(3 / 4)};
 `
 
+const Header = styled.header`
+  display: flex;
+  input[type="checkbox"] {
+    margin-left: auto;
+  }
+`
+
 const Layout = ({ location, title, author, children }) => {
-  const [isLightTheme, setIsLightTheme] = useState(true)
+  const { isLightTheme, toggleTheme } = useTheme()
+
   const rootPath = `${__PATH_PREFIX__}/`
   let header
 
@@ -54,20 +64,14 @@ const Layout = ({ location, title, author, children }) => {
       </BlogPostHeader>
     )
   }
-
-  const toggleTheme = () => setIsLightTheme(prevState => !prevState)
   return (
     <ThemeProvider theme={isLightTheme ? lightTheme : darkTheme}>
       <GlobalStyle />
       <Container>
-        <header>
+        <Header>
           {header}
-          <input
-            type="checkbox"
-            checked={isLightTheme}
-            onChange={toggleTheme}
-          />
-        </header>
+          <ThemeToggle isLightTheme={isLightTheme} onToggle={toggleTheme} />
+        </Header>
         <main>{children}</main>
         <footer>
           © {new Date().getFullYear()}{" "}
