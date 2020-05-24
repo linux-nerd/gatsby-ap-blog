@@ -4,7 +4,8 @@ export const LIGHT_THEME = "light"
 export const DARK_THEME = "dark"
 
 export const useTheme = () => {
-  const getPreferredTheme = localStorage.getItem("selectedTheme")
+  const getPreferredTheme =
+    window.localStorage && window.localStorage.getItem("selectedTheme")
   const prefersDarkMode =
     window.matchMedia &&
     window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -29,7 +30,11 @@ export const useTheme = () => {
   const toggleTheme = () => {
     setIsLightTheme(prevState => {
       const newState = !prevState
-      localStorage.setItem("selectedTheme", newState ? LIGHT_THEME : DARK_THEME)
+      window.localStorage &&
+        window.localStorage.setItem(
+          "selectedTheme",
+          newState ? LIGHT_THEME : DARK_THEME
+        )
       return newState
     })
   }
