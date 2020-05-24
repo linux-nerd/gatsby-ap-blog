@@ -5,13 +5,13 @@ export const DARK_THEME = "dark"
 
 export const useTheme = () => {
   const getPreferredTheme =
-    window &&
-    window.localStorage &&
-    window.localStorage.getItem("selectedTheme")
+    global &&
+    global.localStorage &&
+    global.localStorage.getItem("selectedTheme")
   const prefersDarkMode =
-    window &&
-    window.matchMedia &&
-    window.matchMedia("(prefers-color-scheme: dark)").matches
+    global &&
+    global.matchMedia &&
+    global.matchMedia("(prefers-color-scheme: dark)").matches
   const defaultTheme = LIGHT_THEME
   const getInitialTheme = () => {
     if (getPreferredTheme !== null) {
