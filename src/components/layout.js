@@ -40,7 +40,7 @@ const Container = styled.div`
 
 const Header = styled.header`
   display: flex;
-  input[type="checkbox"] {
+  label {
     margin-left: auto;
   }
 `
