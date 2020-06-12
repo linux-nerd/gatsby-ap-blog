@@ -48,7 +48,7 @@ Here is a glimpse of what we are going to build
 
 This is our folder structure (not very fancy)
 
-```
+```json
 |-- currency-converter
 |   |-- manifest.json
 |   |-- icons
@@ -61,6 +61,7 @@ This is our folder structure (not very fancy)
 ```
 
 ## Manifest File
+
 Every extension has a `manifest.json` file and so does ours (:)) with below content
 
 ```json
