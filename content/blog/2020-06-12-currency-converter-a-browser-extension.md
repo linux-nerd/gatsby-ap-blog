@@ -45,3 +45,41 @@ The `Popup` or our addon makes a call to the currency exchange endpoint and retr
 Here is a glimpse of what we are going to build
 
 ![Currency Converter](/img/screenshot-2020-06-12-at-22.13.34.png "Currency Converter")
+
+This is our folder structure (not very fancy)
+
+```
+|-- currency-converter
+|   |-- manifest.json
+|   |-- icons
+|   |   |-- currency-32.png
+|   |   |-- currency-48.png
+|   |-- popup
+|   |   |-- currency-converter.html
+|   |   |-- currency-converter.js
+|   |   |-- currency-converter.css 
+```
+
+## Manifest File
+Every extension has a `manifest.json` file and so does ours (:)) with below content
+
+```json
+{
+  "manifest_version": 2,
+  "name": "Currency Converter",
+  "version": "1.0",
+
+  "description": "Adds a browser action icon to the toolbar, to convert the currency.",
+  "icons": {
+    "48": "icons/currency-48.png"
+  },
+
+  "permissions": [],
+
+  "browser_action": {
+    "default_icon": "icons/currency-32.png",
+    "default_title": "Currency Converter",
+    "default_popup": "popup/currency-converter.html"
+  }
+}
+```
