@@ -266,3 +266,8 @@ Whenever the code is updated the extension needs to be reloaded
 * Open `Firefox` and navigate to `about:debugging`.
 * Click on `This Firefox` on the left hand side.
 * Click on `Load Temporary Add-on`
+* Navigate to the manifest file (in our case `currency-converter/manifest.json`) and select.
+
+And the extension should be available by now.
+
+![Currency Converter Extension - Firefox](/img/screenshot-2020-06-13-at-09.57.16.png "Currency Converter Extension - Firefox")
