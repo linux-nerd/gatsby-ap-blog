@@ -9,6 +9,20 @@ description: 'Currency Converter: A Browser Extension'
 
 Few weeks back I tried to create a browser extension as a lab's day project. The idea was to ease the development experience, like filling up a long form for testing purpose or add/remove features without changing the user. Although I was not able to complete it in two day's time, but I gained some insight which may help folks who are new to it.
 
+## Problem Statement
+
+I am an Indian living in Sweden and I own USD, SEK (Swedish Krona) and INR (Indian Rupee) and I very often look for the exchange rate. I find it very frustrating to open a new tab to look for the rate. Can we do something about it?
+
+## Solution
+
+Sure, we can!
+
+We can create a Currency Converter extension and add it to Chrome and Firefox (I am mostly on Chrome, but use Firefox as a secondary browser). In this case we don't have to open a new tab and google for current rate.
+
+Here is a glimpse of what we are going to build
+
+![Currency Converter](/img/screenshot-2020-06-12-at-22.13.34.png "Currency Converter")
+
 # Why Browser Extension
 
 My sole purpose was to ease the developer/tester experience by providing an extra interface to tweak the behaviour of the application, but there are a lot of interesting things that can be done with browser extensions. But before coming to benefits, let's see what are browser extensions.
@@ -41,10 +55,6 @@ The `browser action` consists of icons and JavaScript, HTML and CSS files.
 The `Popup` or our addon makes a call to the currency exchange endpoint and retrieves the information related to current rate.
 
 # Let's dive in
-
-Here is a glimpse of what we are going to build
-
-![Currency Converter](/img/screenshot-2020-06-12-at-22.13.34.png "Currency Converter")
 
 This is our folder structure (not very fancy)
 
@@ -284,4 +294,12 @@ By using web technologies we are able to build our own extension.
 
 ![Extension gif](/img/jun-13-2020-10-35-33.gif "Extension gif")
 
-This is a very basic example, but its enough to move in right direction and create something more complex in nature. 
+This is a very basic example, but its enough to move in right direction and create something more complex in nature.
+
+## Want to learn more?
+
+When I started working on extension, I was going through [Chrome extension documentation](https://developer.chrome.com/extensions), and it was such a pain. I would recommend any one and everyone to start going through [MDN docs](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions).
+
+** Peace! **
+
+** If you have any questions or feedback, please feel free to comment below. **
