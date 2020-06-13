@@ -84,3 +84,157 @@ Every extension has a `manifest.json` file and so does ours (:)) with below cont
   }
 }
 ```
+Most of the keys in the `manifest.json` file are self explanatory. `browser_action` points to the `html` file that will be rendered when the currency converter icon is pressed.
+
+The `icons` will be used to represent the extension in components such as the Add-ons Manager.
+
+## Popup HTML
+
+Next we will create `popup/currency-converter.html`. This will add markup to the popup and point to `css` file for styling and `js` file for adding behaviour.
+
+We are only targeting 
+* USD (US Dollars)
+* INR (Indian Rupee)
+* SEK (Swedish Krona)
+* GBP (Great British Pound)
+
+But, this could be extended to add more currencies. Below markup is very crude (for the sake of this tutorial) and not very scalable.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="currency-converter.css" />
+  </head>
+  <body>
+    <h1>Currency Converter</h1>
+    <div>
+      <input type="text" placeholder="Enter amount" />
+    </div>
+    <div class="flex">
+      <label for="from-dd">From
+        <select name="from" id="from-dd">
+          <option value="USD">US Dollar</option>
+          <option value="INR">Indian Rupees</option>
+          <option value="SEK">Swedish Korona</option>
+          <option value="GBP">British Pound</option>
+        </select>
+      </label>
+      <label for="to-dd">To
+        <select name="to" id="to-dd">
+          <option value="USD">US Dollar</option>
+          <option value="INR">Indian Rupees</option>
+          <option value="SEK">Swedish Korona</option>
+          <option value="GBP">British Pound</option>
+        </select>
+      </label>
+    </div>
+    <button class="btn_currency">Convert Currency</button>
+    <h2 class="response"></h2>
+    <script src="currency-converter.js"></script>
+  </body>
+</html>
+```
+
+## Popup CSS
+
+Next create `popup/currency-converter.css` file and add below styles for basic styling. Its very basic styling and very straight forward.
+
+```css
+html,
+body {
+  box-sizing: content-box;
+  margin: 0 20px;
+  display: flex;
+  flex-direction: column;
+  font-family: fantasy, cursive, Arial, Helvetica, sans-serif;
+}
+
+.hidden {
+  display: none;
+}
+
+.flex {
+  display: flex;
+}
+
+input[type="text"] {
+  background: transparent;
+  border-radius: 6px;
+  border: 1px solid #dfe1e5;
+  color: #70757a !important;
+  font-size: 14px !important;
+  height: 36px;
+  padding: 0 0 0 12px;
+  margin-bottom: 10px;
+  font-family: inherit;
+}
+
+select {
+  height: 36px;
+  font-size: inherit;
+  width: 150px;
+  margin-left: 5px;
+  font-family: inherit;
+}
+
+label {
+  margin-right: 10px;
+  font-size: 14px !important;
+}
+
+label:last-child {
+  margin-right: 0;
+  margin-left: auto;
+}
+
+button {
+  height: 36px;
+  border-radius: 6px;
+  margin-top: 10px;
+  display: flex;
+  margin-left: auto;
+  font-size: 14px;
+  margin-bottom: 20px;
+  font-family: inherit;
+  cursor: pointer;
+  line-height: 36px;
+  background: white;
+}
+
+.response {
+  font-size: 2em;
+  margin: 0;
+}
+```
+
+## Popup Js
+
+Last in the line is the `popup/currency-converter.js` which adds interactivity to the popup. Fetches the latest currencies from `https://api.exchangeratesapi.io` and calculates the converted amount.
+
+```js
+const btn = document.querySelector(".btn_currency");
+const fromCurrencyDD = document.querySelector("#from-dd");
+const toCurrencyDD = document.querySelector("#to-dd");
+const amoutText = document.querySelector('input[type="text"]');
+btn.addEventListener("click", fetchCurrency);
+
+function fetchCurrency() {
+  const fromCurrency = fromCurrencyDD.value;
+  const toCurrency = toCurrencyDD.value;
+  fetch(`https://api.exchangeratesapi.io/latest?base=${fromCurrency}&symbols=${fromCurrency},${toCurrency}`)
+    .then(res => res.json())
+    .then(res => addCurrencyVal(res));
+}
+
+function addCurrencyVal(data) {
+  console.log(data);
+  const responseDiv = document.querySelector(".response");
+  const baseAmount = Number(amoutText.value);
+  const response = `${baseAmount} ${data.base} = ${(
+    baseAmount * data.rates[toCurrencyDD.value]
+  ).toFixed(2)} ${toCurrencyDD.value}`;
+  responseDiv.textContent = response;
+}
+```
