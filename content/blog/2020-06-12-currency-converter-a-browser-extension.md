@@ -271,3 +271,7 @@ Whenever the code is updated the extension needs to be reloaded
 And the extension should be available by now.
 
 ![Currency Converter Extension - Firefox](/img/screenshot-2020-06-13-at-09.57.16.png "Currency Converter Extension - Firefox")
+
+# Conclusion
+
+![Extension gif](/img/jun-13-2020-10-35-33.gif "Extension gif")
