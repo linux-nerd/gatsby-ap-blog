@@ -60,6 +60,8 @@ This is our folder structure (not very fancy)
 |   |   |--currency-converter.css 
 ```
 
+You can skip this section and jump straight to the (Github repo)\[https://github.com/linux-nerd/currency-converter-addon]
+
 ## Manifest File
 
 Every extension has a `manifest.json` file and so does ours (:)) with below content
@@ -84,6 +86,7 @@ Every extension has a `manifest.json` file and so does ours (:)) with below cont
   }
 }
 ```
+
 Most of the keys in the `manifest.json` file are self explanatory. `browser_action` points to the `html` file that will be rendered when the currency converter icon is pressed.
 
 The `icons` will be used to represent the extension in components such as the Add-ons Manager.
@@ -93,6 +96,7 @@ The `icons` will be used to represent the extension in components such as the Ad
 Next we will create `popup/currency-converter.html`. This will add markup to the popup and point to `css` file for styling and `js` file for adding behaviour.
 
 We are only targeting 
+
 * USD (US Dollars)
 * INR (Indian Rupee)
 * SEK (Swedish Krona)
@@ -238,3 +242,27 @@ function addCurrencyVal(data) {
   responseDiv.textContent = response;
 }
 ```
+
+Phew!! That was dead simple. This is very similar to a web application with an addon of `manifest.json`.
+
+Now, how do we test it?
+
+# Test web extension
+
+## Chrome
+
+* Open `Chrome` and navigate to `chrome://extensions/`. 
+* Enable the `Developer Mode` (on the right side). 
+* Click on `Load Unpacked` and navigate to the root of web extension build folder (in our case its `currency-converter) and then select.
+
+Voila! You should be able to see the extension in the list of extensions.
+
+![Currency Converter Extension](/img/screenshot-2020-06-13-at-09.47.42.png "Currency Converter Extension")
+
+Whenever the code is updated the extension needs to be reloaded
+
+## Firefox
+
+* Open `Firefox` and navigate to `about:debugging`.
+* Click on `This Firefox` on the left hand side.
+* Click on `Load Temporary Add-on`
