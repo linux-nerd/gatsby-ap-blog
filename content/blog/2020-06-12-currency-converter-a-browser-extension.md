@@ -60,7 +60,7 @@ This is our folder structure (not very fancy)
 |   |   |--currency-converter.css 
 ```
 
-You can skip this section and jump straight to the (Github repo)\[https://github.com/linux-nerd/currency-converter-addon]
+You can skip this section and jump straight to the [Github repo](https://github.com/linux-nerd/currency-converter-addon)
 
 ## Manifest File
 
@@ -249,7 +249,11 @@ Now, how do we test it?
 
 # Test web extension
 
+The above extension can be run on both Chrome and Firefox. But, if you are working on a more complex extension there can be situations where its not cross browser compatible. There is an awesome [library](https://github.com/mozilla/webextension-polyfill), thanks to Mozilla.
+
 ## Chrome
+
+Follow below steps to run the extension on `Chrome`
 
 * Open `Chrome` and navigate to `chrome://extensions/`. 
 * Enable the `Developer Mode` (on the right side). 
@@ -263,6 +267,8 @@ Whenever the code is updated the extension needs to be reloaded
 
 ## Firefox
 
+Follow below steps to run the extension on `Mozilla`
+
 * Open `Firefox` and navigate to `about:debugging`.
 * Click on `This Firefox` on the left hand side.
 * Click on `Load Temporary Add-on`
@@ -274,4 +280,8 @@ And the extension should be available by now.
 
 # Conclusion
 
+By using web technologies we are able to build our own extension.
+
 ![Extension gif](/img/jun-13-2020-10-35-33.gif "Extension gif")
+
+This is a very basic example, but its enough to move in right direction and create something more complex in nature. 
