@@ -49,15 +49,15 @@ Here is a glimpse of what we are going to build
 This is our folder structure (not very fancy)
 
 ```json
-|-- currency-converter
-|   |-- manifest.json
-|   |-- icons
-|   |   |-- currency-32.png
-|   |   |-- currency-48.png
-|   |-- popup
-|   |   |-- currency-converter.html
-|   |   |-- currency-converter.js
-|   |   |-- currency-converter.css 
+|--currency-converter
+|   |--manifest.json
+|   |--icons
+|   |   |--currency-32.png
+|   |   |--currency-48.png
+|   |--popup
+|   |   |--currency-converter.html
+|   |   |--currency-converter.js
+|   |   |--currency-converter.css 
 ```
 
 ## Manifest File
