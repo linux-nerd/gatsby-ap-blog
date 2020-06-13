@@ -300,6 +300,6 @@ This is a very basic example, but its enough to move in right direction and crea
 
 When I started working on extension, I was going through [Chrome extension documentation](https://developer.chrome.com/extensions), and it was such a pain. I would recommend any one and everyone to start going through [MDN docs](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions).
 
-** Peace! **
+**Peace!**
 
-** If you have any questions or feedback, please feel free to comment below. **
+**If you have any questions or feedback, please feel free to comment below.**
