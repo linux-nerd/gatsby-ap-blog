@@ -259,7 +259,7 @@ Now, how do we test it?
 
 # Test web extension
 
-The above extension can be run on both Chrome and Firefox. But, if you are working on a more complex extension there can be situations where its not cross browser compatible. There is an awesome [library](https://github.com/mozilla/webextension-polyfill), thanks to Mozilla.
+The above extension can be run on both Chrome and Firefox. But, if you are working on a more complex extension there can be situations where its not cross browser compatible. There is an awesome [webextension polyfill](https://github.com/mozilla/webextension-polyfill), thanks to Mozilla.
 
 ## Chrome
 
