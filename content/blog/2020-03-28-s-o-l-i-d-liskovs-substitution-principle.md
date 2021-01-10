@@ -5,6 +5,16 @@ description: >-
   if S is a subtype of T, then objects of type T may be replaced with objects of
   type S (i.e. an object of type T may be substituted with any object of a
   subtype S) without altering any of the desirable properties of the program
+featured_image:
+  src: /img/solid-principles_-single-design-principle-881x441-550x275.png
+  alt: Liskov's Substitution Principle
+  title: Liskov's Substitution Principle
+tags:
+  - SOLID
+  - OOP
+  - LSP
+  - OOD
+  - Java
 ---
 # What is S.O.L.I.D by the way?
 
