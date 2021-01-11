@@ -2,6 +2,12 @@
 title: 'Currency Converter: A Browser Extension'
 date: 2020-06-12T21:20:00.093Z
 description: 'Currency Converter: A Browser Extension'
+featured_image:
+  src: /img/browser_extensions.jpg
+  alt: Browser Extension
+  title: Browser Extension
+tags:
+  - javascript
 ---
 ![Browser Extension](/img/browser_extensions.jpg "Browser Extension")
 
