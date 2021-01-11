@@ -8,6 +8,8 @@ featured_image:
   title: Browser Extension
 tags:
   - javascript
+  - extension
+  - web
 ---
 ![Browser Extension](/img/browser_extensions.jpg "Browser Extension")
 
