@@ -1,10 +1,19 @@
 ---
-title: "S.O.L.I.D: Single Responsibility Principle"
+title: 'S.O.L.I.D: Single Responsibility Principle'
 date: 2020-03-25T22:42:05.832Z
 description: >-
   In programming, the Single Responsibility Principle states that every module
   or class should have responsibility for a single part of the functionality
   provided by the software.
+featured_image:
+  src: /img/srp-solid.jpeg
+  alt: Single Responsibility Principle
+  title: Single Responsibility Principle
+tags:
+  - solid
+  - SRP
+  - java
+  - OOD
 ---
 
 # What is S.O.L.I.D by the way?
