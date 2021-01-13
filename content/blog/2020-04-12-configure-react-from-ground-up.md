@@ -2,6 +2,15 @@
 title: Configure React from Ground Up
 date: 2020-04-12T11:27:43.817Z
 description: Configure React from ground up using Webpack and Babel
+featured_image:
+  src: /img/configure-react.jpeg
+  alt: Configure React from ground up using Webpack and Babel
+  title: Configure React from ground up using Webpack and Babel
+tags:
+  - react
+  - babel
+  - webpack
+  - javascript
 ---
 # Introduction ꒰⑅•ᴗ•⑅꒱
 
