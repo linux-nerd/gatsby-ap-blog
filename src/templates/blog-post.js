@@ -8,6 +8,7 @@ import SEO from "../components/seo"
 import { rhythm } from "../utils/typography"
 import Gitalk from "gitalk"
 import { BlogInfo } from "../components/blog-info"
+import { Tags } from "../components/tags"
 
 const Title = styled.h1`
   margin-top: ${rhythm(1)};
@@ -68,6 +69,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
       <article>
         <header>
           <Title>{post.frontmatter.title}</Title>
+          <Tags tags={post.frontmatter.tags} />
           {/* <SubTitle>{post.frontmatter.date}</SubTitle> */}
           <BlogInfo date={post.frontmatter.date} timeToRead={post.timeToRead} />
         </header>
@@ -121,7 +123,8 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
-        description
+        description,
+        tags
       },
       timeToRead
     }
