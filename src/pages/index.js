@@ -1,13 +1,14 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 import styled from "styled-components"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee } from '@fortawesome/free-solid-svg-icons'
+
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { rhythm } from "../utils/typography"
+import { BlogInfo } from "../components/blog-info"
+import { Tags } from "../components/tags"
 
 const Title = styled.h3`
   margin-bottom: ${rhythm(1 / 4)};
@@ -34,22 +35,22 @@ const LinkToBlog = styled(Link)`
 //   box-shadow: 2px 1px 5px ${props => props.theme.color.primary};
 // `
 
-const Dot = styled.span`
-  margin-left: .5rem;
-  margin-right: .5rem;
-  display: inline-block;
-  text-transform: uppercase;
-  font-size: .875rem;
-  color: #4a4a4a;
-`;
+// const Dot = styled.span`
+//   margin-left: .5rem;
+//   margin-right: .5rem;
+//   display: inline-block;
+//   text-transform: uppercase;
+//   font-size: .875rem;
+//   color: #4a4a4a;
+// `;
 
-const Small = styled.small`
-  text-transform: uppercase;
-  font-size: .875rem;
-  color: #4a4a4a;
-  font-family: Open Sans,sans-serif;
-  line-height: 1.5;
-`
+// const Small = styled.small`
+//   text-transform: uppercase;
+//   font-size: .875rem;
+//   color: #4a4a4a;
+//   font-family: Open Sans,sans-serif;
+//   line-height: 1.5;
+// `
 
 const Article = styled.article`
   display: flex;
@@ -108,9 +109,9 @@ const Section = styled.section`
   line-height: 1.5;
 `
 
-const SubTitle = styled.p`
-  margin-bottom: 0.25rem;
-`
+// const SubTitle = styled.p`
+//   margin-bottom: 0.25rem;
+// `
 
 const BlogIndex = ({ data, location }) => {
   console.log(data)
@@ -138,11 +139,8 @@ const BlogIndex = ({ data, location }) => {
                 <Title>
                   <LinkToBlog to={node.fields.slug}>{title}</LinkToBlog>
                 </Title>
-                <SubTitle>
-                  <Small>{node.frontmatter.date}</Small>
-                  <Dot>·</Dot>
-                  <Small><FontAwesomeIcon icon={faCoffee} /> {node.timeToRead} min read</Small>
-                </SubTitle>
+                <Tags tags={node.frontmatter.tags}/>
+                <BlogInfo date={node.frontmatter.date} timeToRead={node.timeToRead} />
               </header>
               <Section>
                 <p

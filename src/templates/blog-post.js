@@ -1,28 +1,29 @@
 import React, { useEffect } from "react"
 import { Link, graphql } from "gatsby"
-import styled, { css } from "styled-components"
+import styled from "styled-components"
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import { rhythm, scale } from "../utils/typography"
+import { rhythm } from "../utils/typography"
 import Gitalk from "gitalk"
+import { BlogInfo } from "../components/blog-info"
 
 const Title = styled.h1`
   margin-top: ${rhythm(1)};
   margin-bottom: 0;
 `
-const SubTitle = styled.p`
-  ${props => {
-    const { fontSize, lineHeight } = scale(-1 / 5)
-    return css`
-      font-size: ${fontSize};
-      line-height: ${lineHeight};
-    `
-  }};
-  margin-bottom: ${rhythm(1)};
-  display: block;
-`
+// const SubTitle = styled.p`
+//   ${props => {
+//     const { fontSize, lineHeight } = scale(-1 / 5)
+//     return css`
+//       font-size: ${fontSize};
+//       line-height: ${lineHeight};
+//     `
+//   }};
+//   margin-bottom: ${rhythm(1)};
+//   display: block;
+// `
 
 const Divider = styled.hr`
   margin-bottom: ${rhythm(1)};
@@ -67,7 +68,8 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
       <article>
         <header>
           <Title>{post.frontmatter.title}</Title>
-          <SubTitle>{post.frontmatter.date}</SubTitle>
+          {/* <SubTitle>{post.frontmatter.date}</SubTitle> */}
+          <BlogInfo date={post.frontmatter.date} timeToRead={post.timeToRead} />
         </header>
         <section dangerouslySetInnerHTML={{ __html: post.html }} />
         <Divider />
@@ -120,7 +122,8 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         description
-      }
+      },
+      timeToRead
     }
   }
 `

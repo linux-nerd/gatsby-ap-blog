@@ -3,10 +3,10 @@ import { Link } from "gatsby"
 import styled, { css, ThemeProvider } from "styled-components"
 
 import { rhythm, scale } from "../utils/typography"
-import { darkTheme, lightTheme } from "../utils/theme"
+import { lightTheme } from "../utils/theme"
 import { GlobalStyle } from "./global-style"
-import { ThemeToggle } from "./theme-toggle"
-import { useTheme } from "../hooks/use-theme"
+// import { ThemeToggle } from "./theme-toggle"
+// import { useTheme } from "../hooks/use-theme"
 
 const AllBlogsHeader = styled.h1`
   ${props => {
@@ -46,7 +46,7 @@ const Header = styled.header`
 `
 
 const Layout = ({ location, title, author, children }) => {
-  const { isLightTheme, toggleTheme } = useTheme()
+  // const { isLightTheme } = useTheme()
 
   const rootPath = `${__PATH_PREFIX__}/`
   let header
@@ -65,12 +65,12 @@ const Layout = ({ location, title, author, children }) => {
     )
   }
   return (
-    <ThemeProvider theme={isLightTheme ? lightTheme : darkTheme}>
+    <ThemeProvider theme={lightTheme }>
       <GlobalStyle />
       <Container>
         <Header>
           {header}
-          <ThemeToggle isLightTheme={isLightTheme} onToggle={toggleTheme} />
+          {/* <ThemeToggle isLightTheme={isLightTheme} onToggle={toggleTheme} /> */}
         </Header>
         <main>{children}</main>
         <footer>
