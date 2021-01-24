@@ -6,7 +6,7 @@ module.exports = {
       summary: `Personal thought by`,
       homePage: `https://abhishekprakash.com`,
     },
-    description: `A platform to share my thoughts`,
+    description: `I'm passionate about all things web and have architected websites & web apps using cutting-edge tech stacks. Experienced in working with popular frameworks, enhance them as well as creating custom frameworks from the ground up.`,
     siteUrl: `https://blog.abhishekprakash.com`,
     social: {
       twitter: `linux_nerd`,

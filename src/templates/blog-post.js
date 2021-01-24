@@ -38,6 +38,26 @@ const NavigationContent = styled.ul`
   padding: 0;
 `
 
+const Aside = styled.aside`
+  @media only screen and (min-width: 600px) {
+    margin-left: 2rem;
+    width: 25%;
+  }
+`
+
+const FlexSection = styled.section`
+  display: flex;
+  @media only screen and (max-width: 600px) {
+    flex-direction: column;
+  }
+`
+
+const BlogsSection = styled.div`
+  @media only screen and (min-width: 600px) {
+    width: 75%;
+  }
+`
+
 const BlogPostTemplate = ({ data, pageContext, location }) => {
   const post = data.markdownRemark
   const siteTitle = data.site.siteMetadata.title
@@ -67,17 +87,21 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
         description={post.frontmatter.description || post.excerpt}
       />
       <article>
-        <header>
-          <Title>{post.frontmatter.title}</Title>
-          <Tags tags={post.frontmatter.tags} />
-          {/* <SubTitle>{post.frontmatter.date}</SubTitle> */}
-          <BlogInfo date={post.frontmatter.date} timeToRead={post.timeToRead} />
-        </header>
-        <section dangerouslySetInnerHTML={{ __html: post.html }} />
+        <FlexSection>
+          <BlogsSection>
+            <header>
+              <Title>{post.frontmatter.title}</Title>
+              <Tags tags={post.frontmatter.tags} />
+              <BlogInfo date={post.frontmatter.date} timeToRead={post.timeToRead} />
+            </header>
+            <section dangerouslySetInnerHTML={{ __html: post.html }} />
+            
+          </BlogsSection>
+          <Aside>
+            <Bio />
+          </Aside>
+        </FlexSection>
         <Divider />
-        <footer>
-          <Bio />
-        </footer>
       </article>
 
       <nav>

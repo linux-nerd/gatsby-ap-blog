@@ -65,7 +65,7 @@ const ImageContainer = styled.div`
   height: 170px;
   margin-bottom: 0.5rem;
   @media only screen and (min-width: 600px) {
-    width: 400px;
+    
     margin-bottom: 0;
   }
 `;
@@ -93,7 +93,7 @@ const ImageWrapper = styled.div`
   }
 
   @media only screen and (min-width: 600px) {
-    width: 400px;
+    width: 320px;
   }
 `;
 
@@ -109,9 +109,25 @@ const Section = styled.section`
   line-height: 1.5;
 `
 
-// const SubTitle = styled.p`
-//   margin-bottom: 0.25rem;
-// `
+const Aside = styled.aside`
+  @media only screen and (min-width: 600px) {
+    margin-left: 2rem;
+    width: 25%;
+  }
+`
+
+const FlexSection = styled.section`
+  display: flex;
+  @media only screen and (max-width: 600px) {
+    flex-direction: column;
+  }
+`
+
+const BlogsSection = styled.div`
+  @media only screen and (min-width: 600px) {
+    width: 75%;
+  }
+`
 
 const BlogIndex = ({ data, location }) => {
   console.log(data)
@@ -122,37 +138,44 @@ const BlogIndex = ({ data, location }) => {
   return (
     <Layout location={location} title={siteTitle} author={author}>
       <SEO title="All posts" />
-      <Bio />
-      {posts.map(({ node }) => {
-        const title = node.frontmatter.title || node.fields.slug
-        return (
-          <Article key={node.fields.slug}>
-            <ImageContainer>
-              <LinkToBlog to={node.fields.slug}>
-                <ImageWrapper>
-                  <Image src={node.frontmatter.featured_image.src} />
-                </ImageWrapper>
-              </LinkToBlog> 
-            </ImageContainer>
-            <Container>
-              <header>
-                <Title>
-                  <LinkToBlog to={node.fields.slug}>{title}</LinkToBlog>
-                </Title>
-                <Tags tags={node.frontmatter.tags}/>
-                <BlogInfo date={node.frontmatter.date} timeToRead={node.timeToRead} />
-              </header>
-              <Section>
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: node.frontmatter.description || node.excerpt,
-                  }}
-                />
-              </Section>
-            </Container>
-          </Article>
-        )
-      })}
+      {/* <Bio /> */}
+      <FlexSection>
+        <BlogsSection>
+          {posts.map(({ node }) => {
+            const title = node.frontmatter.title || node.fields.slug
+            return (
+              <Article key={node.fields.slug}>
+                <ImageContainer>
+                  <LinkToBlog to={node.fields.slug}>
+                    <ImageWrapper>
+                      <Image src={node.frontmatter.featured_image.src} />
+                    </ImageWrapper>
+                  </LinkToBlog> 
+                </ImageContainer>
+                <Container>
+                  <header>
+                    <Title>
+                      <LinkToBlog to={node.fields.slug}>{title}</LinkToBlog>
+                    </Title>
+                    <Tags tags={node.frontmatter.tags}/>
+                    <BlogInfo date={node.frontmatter.date} timeToRead={node.timeToRead} />
+                  </header>
+                  <Section>
+                    <p
+                      dangerouslySetInnerHTML={{
+                        __html: node.frontmatter.description || node.excerpt,
+                      }}
+                    />
+                  </Section>
+                </Container>
+              </Article>
+            )
+          })}
+        </BlogsSection>
+        <Aside>
+          <Bio />
+        </Aside>
+      </FlexSection>
     </Layout>
   )
 }
