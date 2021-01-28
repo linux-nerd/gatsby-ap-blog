@@ -23,12 +23,17 @@ const Small = styled.small`
   line-height: 1.5;
 `
 
-export const BlogInfo = ({date, timeToRead }) => {
+const Icon = styled(FontAwesomeIcon)`
+  font-size: 14px;
+  max-width: 14px;
+`
+
+export const BlogInfo = ({ date, timeToRead }) => {
   return (
     <SubTitle>
       <Small>{date}</Small>
       <Dot>·</Dot>
-      <Small><FontAwesomeIcon icon={faMugHot} /> {timeToRead} min read</Small>
+      <Small><Icon icon={faMugHot} /> {timeToRead} min read</Small>
     </SubTitle>
   )
 }
