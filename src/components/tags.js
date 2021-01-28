@@ -16,6 +16,7 @@ const TagItem = styled.span`
 
 const Icon = styled(FontAwesomeIcon)`
   font-size: 14px;
+  max-width: 14px;
 `
 
 export const Tags = ({ tags }) => {
